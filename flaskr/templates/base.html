@@ -1,24 +1,140 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - Flaskr</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<nav>
-  <h1>Flaskr</h1>
-  <ul>
-    {% if g.user %}
-      <li><span>{{ g.user['username'] }}</span>
-      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-    {% else %}
-      <li><a href="{{ url_for('auth.register') }}">Register</a>
-      <li><a href="{{ url_for('auth.login') }}">Log In</a>
-    {% endif %}
-  </ul>
-</nav>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</section>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>{% block title %}asd{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='album.css') }}">
+</head>
+
+<body>
+
+    {% block header %}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+             {% if g.user %}
+                <a class="navbar-brand" href="#">{{ g.user['username'].upper() }}</a>
+                <h1 class="jumbotron-heading"></h1>
+            {% else %}
+                <a class="navbar-brand" href="#">Nombre Proyecto</a>
+            {% endif %}
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse" id="navbarsExample05" style="">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('pagina.index') }}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown05">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+                <!-- 
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form> -->
+                {% if g.user %}
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger my-2 my-sm-0">Salir</a>
+                {% else %}
+                    <a href="{{ url_for('auth.register') }}" class="btn btn-outline-success my-2 my-sm-0">Registrarse</a>
+                    <li class="nav-item"></li>
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary my-2 my-sm-0">Ingresar</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    {% endblock %}
+
+    <main role="main">
+
+        {% block buscador %}
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Bienvenido! </h1>
+                <p class="lead text-muted">Puede buscar peliculas, series o programas de TV</p>
+                <form method="post" action="{{ url_for('pagina.buscar') }}">
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12 col-md-8">
+                            <input type="text" name="titulo" class="form-control form-control-lg my-3" id="titulo" placeholder="Buscar.." required autocomplete="off" value="{{ request.form['titulo'] }}" style="height: 100%;">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4">
+                            <select name="tipo" class="form-control form-control-lg my-3" style="height: 100%;">
+                                <option value="peliculas">Peliculas</option>
+                                <option value="series">Series</option>
+                                <option value="tv">TV</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12 col-md-12">
+                            <button type="submit" class="btn btn-block btn-primary my-3" style="height: 80%;">Buscar</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+        {% endblock %}
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+                {% for message in get_flashed_messages() %}
+                <div class="flash">{{ message }}</div>
+                {% endfor %}
+
+
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+
+    </main>
+
+
+
+    {% block footer %}
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+            <p>New to Bootstrap? <a href="#">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+        </div>
+    </footer>
+    {% endblock %}
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='holder.min.js') }}"></script>
+
+</body>
+</html>
