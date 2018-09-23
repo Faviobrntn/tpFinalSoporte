@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,7 +6,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>{% block title %}asd{% endblock %}</title>
+    <title>{% block title %}TMDB{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
@@ -17,7 +16,6 @@
 </head>
 
 <body>
-
     {% block header %}
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,7 +23,7 @@
                 <a class="navbar-brand" href="#">{{ g.user['username'].upper() }}</a>
                 <h1 class="jumbotron-heading"></h1>
             {% else %}
-                <a class="navbar-brand" href="#">Nombre Proyecto</a>
+                <a class="navbar-brand" href="#">TMDB</a>
             {% endif %}
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -78,10 +76,10 @@
                 <form method="post" action="{{ url_for('pagina.buscar') }}">
                     <div class="form-group row">
                         <div class="form-group col-sm-12 col-md-8">
-                            <input type="text" name="titulo" class="form-control form-control-lg my-3" id="titulo" placeholder="Buscar.." required autocomplete="off" value="{{ request.form['titulo'] }}" style="height: 100%;">
+                            <input type="text" name="titulo" class="form-control form-control-lg" id="titulo" placeholder="Buscar.." required autocomplete="off" value="{{ request.form['titulo'] }}" style="height: 60px;">
                         </div>
                         <div class="form-group col-sm-12 col-md-4">
-                            <select name="tipo" class="form-control form-control-lg my-3" style="height: 100%;">
+                            <select name="tipo" class="form-control form-control-lg" style="height: 60px;">
                                 <option value="peliculas">Peliculas</option>
                                 <option value="series">Series</option>
                                 <option value="tv">TV</option>
@@ -91,10 +89,9 @@
 
                     <div class="form-group row">
                         <div class="col-sm-12 col-md-12">
-                            <button type="submit" class="btn btn-block btn-primary my-3" style="height: 80%;">Buscar</button>
+                            <button type="submit" class="btn btn-block btn-primary" style="height: 60px;">Buscar</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </section>

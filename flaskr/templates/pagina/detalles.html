@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block buscador %} {% endblock %}
+{% block content %}
+
+    <h1>{% block title %}Detalles{% endblock %}</h1>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{post.poster_path}}">
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">
+                        <ul>
+                            <li><b>Título: </b>{{ post.title }}</li>
+                            <li><b>Título original: </b>{{ post.original_title }}</li>
+                            <li><b>Sinopsis: </b>{{ post.overview }}</li>
+                            <li><b>Lenguaje: </b>{{ post.original_language }}</li>
+                            <li><b>Duración: </b>{{ post.runtime }}</li>
+                            <li><b>Publicada: </b>{{ post.release_date }}</li>
+                            <li><b>Puntuación: </b>{{ post.vote_average }} ({{ post.vote_count }} votos)</li>
+                            <li><b>Popularidad: </b>{{ post.popularity }}</li>
+                            <li><b>Generos: </b>
+                                {% for genero in post.genres %}
+                                    {{ genero["name"] }} /
+                                {% endfor %}
+                            </li>
+                            <li><b>Empresas Productoras: </b>
+                                <ul>
+                                    {% for prod in post.production_companies %}
+                                        <li>{{ prod["name"] }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
