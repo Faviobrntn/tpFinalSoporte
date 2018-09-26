@@ -16,6 +16,7 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        email = request.form['email']
         db = get_db()
         error = None
 
@@ -23,15 +24,17 @@ def register():
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
+        elif not email:
+            error = 'E-mail is required.'
         elif db.execute(
             'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
-            error = 'User {} is already registered.'.format(username)
+            error = 'El usuario {} ya se encuentra registrado.'.format(username)
 
         if error is None:
             db.execute(
-                'INSERT INTO user (username, password) VALUES (?, ?)',
-                (username, generate_password_hash(password))
+                'INSERT INTO user (username, password, email) VALUES (?, ?, ?)',
+                (username, generate_password_hash(password), email)
             )
             db.commit()
             return redirect(url_for('auth.login'))
@@ -54,9 +57,9 @@ def login():
         ).fetchone()
 
         if user is None:
-            error = 'Incorrect username.'
+            error = 'Usuario incorrecto'
         elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password.'
+            error = 'Contraseña incorrecta.'
 
         if error is None:
             session.clear()
@@ -98,3 +101,24 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
+
+
+@bp.route('/mis-favoritos')
+@login_required
+def favoritos():
+    db = get_db()
+    favoritos = db.execute(
+        'SELECT * FROM favoritos f WHERE f.user_id = ?', (g.user['id'], )
+    ).fetchall()
+    return render_template('auth/favoritos.html', favoritos=favoritos)
+
+
+
+@bp.route('/<int:id>/eliminar-favorito', methods=('POST',))
+@login_required
+def quitarFavorito(id):
+    get_post(id)
+    db = get_db()
+    db.execute('DELETE FROM favoritos WHERE id = ?', (id,))
+    db.commit()
+    return redirect(url_for('auth.favoritos'))

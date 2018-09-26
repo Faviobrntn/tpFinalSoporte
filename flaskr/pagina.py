@@ -5,7 +5,7 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-# from flaskr.db import get_db
+from flaskr.db import get_db
 import json, requests
 from tmdbv3api import TMDb, TV, Movie, Season, Discover
 
@@ -43,7 +43,7 @@ def index():
     })
 
     # return render_template('pagina/index.html', posts=data['results'])
-    return render_template('pagina/index.html', posts=movie)
+    return render_template('pagina/index.html', peliculas=movie)
 
 
 
@@ -53,7 +53,6 @@ def buscar():
         if request.method == 'POST':
             titulo = request.form['titulo']
             tipo = request.form['tipo']
-            error = None
 
             if not titulo:
                 raise Exception('El Titulo es requerido.')
@@ -71,7 +70,7 @@ def buscar():
         flash(str(e))
         return redirect(url_for('pagina.index'))
         
-    return render_template('pagina/buscar.html', posts=show)
+    return render_template('pagina/buscar.html', resultados=show)
 
 
 
@@ -117,4 +116,40 @@ def detalles(id):
         flash(str(e))
         return redirect(url_for('pagina.index'))
     
-    return render_template('pagina/detalles.html', post=detalles)
+    return render_template('pagina/detalles.html', resultado=detalles)
+
+
+
+
+@bp.route('/favorito', methods=('GET', 'POST'))
+def favorito():
+    resp = {'status':False, 'msg':''}
+    try:
+        if request.method == 'POST':
+            pelicula_id = request.form['id']
+
+            if (pelicula_id):
+                fav = get_db().execute(
+                    'SELECT * FROM favoritos f WHERE f.user_id = ? AND f.pelicula_id = ?', (g.user['id'], pelicula_id)
+                    ).fetchone()
+                #Significa que no existe, por ende, guardo el FAV
+                if fav is None: 
+                    db = get_db()
+                    db.execute(
+                        'INSERT INTO favoritos (user_id, pelicula_id) VALUES (?, ?)', (g.user['id'], pelicula_id ))
+                    db.commit()
+                    resp['status'] = True
+                    resp['fav'] = True
+                else:
+                    db = get_db()
+                    db.execute('DELETE FROM favoritos WHERE id = ?', (fav['id'],))
+                    db.commit()
+                    resp['status'] = True
+                    resp['fav'] = False
+            else:
+                raise Exception('Parametro vacio.')
+    except Exception as e:
+        resp['msg'] = str(e)
+        return json.dumps(resp)
+
+    return json.dumps(resp)
