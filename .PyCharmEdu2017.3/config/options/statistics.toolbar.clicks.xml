@@ -1,0 +1,16 @@
+<application>
+  <component name="ToolbarClicksCollector">
+    <counts>
+      <entry action="ChangesView.Refresh@ChangesBrowser" count="1" />
+      <entry action="ContextHelp@DiffToolbar" count="1" />
+      <entry action="Rerun@RunnerToolbar" count="20" />
+      <entry action="Stop@RunnerToolbar" count="2" />
+      <entry action="com.intellij.diff.impl.DiffRequestProcessor$MyNextChangeAction@DiffToolbar" count="1" />
+      <entry action="com.intellij.diff.impl.DiffRequestProcessor$MyNextDifferenceAction@DiffToolbar" count="1" />
+      <entry action="com.intellij.diff.impl.DiffRequestProcessor$MyPrevChangeAction@DiffToolbar" count="1" />
+      <entry action="com.intellij.openapi.vcs.changes.ui.ChangesTree$ToggleShowDirectoriesAction@ChangesBrowser" count="1" />
+      <entry action="com.intellij.ui.CommonActionsPanel$MyActionButton@ToolbarDecorator" count="4" />
+      <entry action="com.intellij.webcore.packaging.InstalledPackagesPanel$4@ToolbarDecorator" count="3" />
+    </counts>
+  </component>
+</application>

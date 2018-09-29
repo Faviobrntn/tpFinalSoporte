@@ -1,0 +1,68 @@
+<application>
+  <component name="ProjectJdkTable">
+    <jdk version="2">
+      <name value="Python 3.6 (proyecto prueba)" />
+      <type value="Python SDK" />
+      <version value="Python 3.6.1" />
+      <homePath value="C:\Users\sebyg\PycharmProjects\proyecto prueba\venv\Scripts\python.exe" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file://$USER_HOME$/PycharmProjects/proyecto prueba/venv/Lib" type="simple" />
+            <root url="file://$USER_HOME$/PycharmProjects/proyecto prueba/venv/Scripts" type="simple" />
+            <root url="file://C:/Program Files/Python36/Lib" type="simple" />
+            <root url="file://C:/Program Files/Python36/DLLs" type="simple" />
+            <root url="file://$USER_HOME$/PycharmProjects/proyecto prueba/venv" type="simple" />
+            <root url="file://$USER_HOME$/PycharmProjects/proyecto prueba/venv/Lib/site-packages" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharmEdu2017.3/system/python_stubs/-471599195" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.6" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.5" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.4" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2and3" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional ASSOCIATED_PROJECT_PATH="$USER_HOME$/PycharmProjects/proyecto prueba" />
+    </jdk>
+    <jdk version="2">
+      <name value="Python 3.6 (practica 1)" />
+      <type value="Python SDK" />
+      <version value="Python 3.6.1" />
+      <homePath value="C:\Users\sebyg\PycharmProjects\practica 1\venv\Scripts\python.exe" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file://$USER_HOME$/PycharmProjects/practica 1/venv/Lib" type="simple" />
+            <root url="file://$USER_HOME$/PycharmProjects/practica 1/venv/Scripts" type="simple" />
+            <root url="file://C:/Program Files/Python36/Lib" type="simple" />
+            <root url="file://C:/Program Files/Python36/DLLs" type="simple" />
+            <root url="file://$USER_HOME$/PycharmProjects/practica 1/venv" type="simple" />
+            <root url="file://$USER_HOME$/PycharmProjects/practica 1/venv/Lib/site-packages" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharmEdu2017.3/system/python_stubs/1489468207" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.6" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.5" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.4" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2and3" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional ASSOCIATED_PROJECT_PATH="$USER_HOME$/PycharmProjects/practica 1" />
+    </jdk>
+  </component>
+</application>

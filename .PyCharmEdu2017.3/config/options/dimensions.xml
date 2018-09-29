@@ -1,0 +1,15 @@
+<application>
+  <component name="DimensionService">
+    <location key="FileChooserDialogImpl.0.0.1366.768" x="466" y="77" />
+    <location key="WELCOME_SCREEN.0.0.1366.768" x="686" y="333" />
+    <location key="SettingsEditor.0.0.1366.768" x="206" y="3" />
+    <location key="#Browse_JetBrains_Plugins_.0.0.1366.768" x="262" y="20" />
+    <location key="DiffContextDialog.0.0.1366.768" x="129" y="53" />
+    <location key="CommitChangelistDialog2.0.0.1366.768" x="303" y="0" />
+    <location key="Vcs.Push.Dialog.0.0.1366.768" x="359" y="103" />
+    <size key="GridCell.Tab.0.left.0.0.1366.768" width="1344" height="205" />
+    <size key="GridCell.Tab.0.center.0.0.1366.768" width="1344" height="205" />
+    <size key="GridCell.Tab.0.right.0.0.1366.768" width="1344" height="205" />
+    <size key="GridCell.Tab.0.bottom.0.0.1366.768" width="1344" height="205" />
+  </component>
+</application>

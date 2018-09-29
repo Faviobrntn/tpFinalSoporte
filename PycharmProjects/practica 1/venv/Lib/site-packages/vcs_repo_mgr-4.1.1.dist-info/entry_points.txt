@@ -1,0 +1,3 @@
+[console_scripts]
+vcs-tool = vcs_repo_mgr.cli:main
+

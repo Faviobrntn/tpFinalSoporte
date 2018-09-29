@@ -1,0 +1,38 @@
+<application>
+  <component name="ActionsCollector">
+    <counts>
+      <entry action="$Undo" count="2" />
+      <entry action="ChangesView.Refresh" count="1" />
+      <entry action="CheckinFiles" count="2" />
+      <entry action="ContextHelp" count="1" />
+      <entry action="EditorBackSpace" count="765" />
+      <entry action="EditorChooseLookupItem" count="57" />
+      <entry action="EditorCodeBlockEnd" count="1" />
+      <entry action="EditorCodeBlockStart" count="1" />
+      <entry action="EditorCopy" count="9" />
+      <entry action="EditorCut" count="6" />
+      <entry action="EditorDelete" count="115" />
+      <entry action="EditorDown" count="85" />
+      <entry action="EditorEnter" count="162" />
+      <entry action="EditorLeft" count="503" />
+      <entry action="EditorLeftWithSelection" count="21" />
+      <entry action="EditorLineStart" count="1" />
+      <entry action="EditorNextWord" count="1" />
+      <entry action="EditorPaste" count="28" />
+      <entry action="EditorRight" count="662" />
+      <entry action="EditorTab" count="27" />
+      <entry action="EditorUp" count="19" />
+      <entry action="Git.Branches" count="1" />
+      <entry action="InvalidateCaches" count="2" />
+      <entry action="Move" count="1" />
+      <entry action="NewDirectoryProject" count="1" />
+      <entry action="NewPythonFile" count="16" />
+      <entry action="Rename reference" count="1" />
+      <entry action="Rerun" count="20" />
+      <entry action="ShowSettings" count="20" />
+      <entry action="Stop" count="2" />
+      <entry action="ToggleLineBreakpoint" count="8" />
+      <entry action="Vcs.Push" count="1" />
+    </counts>
+  </component>
+</application>

@@ -1,0 +1,44 @@
+<application>
+  <component name="RecentDirectoryProjectsManager">
+    <option name="recentPaths">
+      <list>
+        <option value="$USER_HOME$/PycharmProjects/practica 1" />
+        <option value="$USER_HOME$/PycharmProjects/proyecto prueba" />
+      </list>
+    </option>
+    <option name="openPaths">
+      <list>
+        <option value="$USER_HOME$/PycharmProjects/practica 1" />
+      </list>
+    </option>
+    <option name="lastPath" value="$USER_HOME$/PycharmProjects/practica 1" />
+    <option name="pid" value="11548" />
+    <option name="additionalInfo">
+      <map>
+        <entry key="$USER_HOME$/PycharmProjects/practica 1">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="PE-173.4145" />
+              <option name="productionCode" value="PE" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1522011004909" />
+              <option name="buildTimestamp" value="1513147235817" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/PycharmProjects/proyecto prueba">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="PE-173.4145" />
+              <option name="productionCode" value="PE" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1521662201276" />
+              <option name="buildTimestamp" value="1513147223389" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="lastProjectLocation" value="$USER_HOME$/PycharmProjects" />
+  </component>
+</application>

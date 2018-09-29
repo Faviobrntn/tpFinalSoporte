@@ -1,0 +1,22 @@
+<application>
+  <component name="PropertiesComponent">
+    <property name="PyCharmEDU.InitialConfiguration.V4" value="true" />
+    <property name="PyCharmEDU.InitialConfiguration.V2" value="true" />
+    <property name="PyCharmEDU.InitialConfiguration.V1" value="true" />
+    <property name="ShowDocumentationInToolWindow" value="true" />
+    <property name="PyCharmEDU.InitialConfiguration" value="true" />
+    <property name="toolwindow.stripes.buttons.info.shown" value="true" />
+    <property name="Educational.conflictingPluginsDisabled" value="true" />
+    <property name="StudyPyCharm.InitialConfiguration40" value="true" />
+    <property name="PyCharmEDU.InitialConfiguration.V3" value="true" />
+    <property name="fileTypeChangedCounter" value="1" />
+    <property name="PyCharmEDU.initialConfigurationShown" value="true" />
+    <property name="StudyShowPopup" value="true" />
+    <property name="file.gist.reindex.count" value="3225" />
+    <property name="PACKAGE_FILTER" value="vcs&#10;math&#10;datetime" />
+    <property name="Edu.CourseCreator.Enabled" value="false" />
+    <property name="PLUGIN_FILTER" value="git" />
+    <property name="file.chooser.recent.files" value="C:/Program Files/Git/bin/git.exe" />
+    <property name="CommitChangeListDialog.DETAILS_SPLITTER_PROPORTION_2" value="0.6113821" />
+  </component>
+</application>

@@ -1,0 +1,9 @@
+<application>
+  <component name="MainMenuCollector">
+    <counts>
+      <entry path="File -&gt; Invalidate Caches / Restart..." count="2" />
+      <entry path="File -&gt; New Project..." count="1" />
+      <entry path="File -&gt; Settings..." count="20" />
+    </counts>
+  </component>
+</application>
