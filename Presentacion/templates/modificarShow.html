@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<form id="formModi" action="modiShow" method="POST">
+<fieldset>
+<legend>Modificar Show</legend>
+    <input type="text" name="idShow" id="idShow" required="" value="{{show.idShow}}" style="visibility:hidden"/>
+    <input type="text" name="tipo" id="tipo" required="" value="{{show.tipo}}" style="visibility:hidden"/>
+    <div class="formu"><label>ID:</label><label>{{pershow.idshow}}</label></div><br /><br />
+    <div class="formu"><label>Nombre:</label><label>{{show.nombre}}</label></div><br /><br />
+    <div class="formu"><label>Poster:</label><img class="poster" src="http://image.tmdb.org/t/p/w185//{{show.poster}}" style="border:solid black 2px;"></div><br />
+    <div class="formu"><label>Estado:</label><select name="estado" required="">
+        <option value="0">Visto</option>
+        <option value="2">En Proceso</option>
+        <option value="1">Pendiente</option>
+    </select></div><br />
+    {%if pershow.puntuado==0%}
+    <div class="formu"><label>Puntuacion:</label><select name="puntuacion" required="">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select></div><br />
+    {%endif%}
+    {%if show.cantidadPuntuaciones>0%}
+    <label>Puntuacion de los usuarios del sitio:</label><label>{{show.puntuacionUsuariosAcumulada/show.cantidadPuntuaciones}}</label>
+    {%else%}
+    <label>Sin puntuacion aun</label>
+    {%endif%}
+
+    <div class="botones" ><input type="submit" name="modificar" id="modificar" value="Modificar" /></div>
+    <div class="botones" ><a id="volver" href="/">Volver</a></div>
+
+</fieldset>
+</form>
+{% endblock %}

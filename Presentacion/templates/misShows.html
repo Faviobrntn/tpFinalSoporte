@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<form id="filtro" action="filtrar" method="POST">
+        <fieldset>
+            <legend>Filtrar por:</legend>
+            <input type="text" name="tipo" id="tipo" required="" value="{{tipo}}" style="visibility:hidden"/>
+            <div class="radio"><label><input type="radio"  value="0" name="show" required="" />Vistas</label><label><input type="radio"  value="1" name="show" />Pendiente</label><label><input type="radio"  value="2" name="show" />En proceso</label></div>
+            <div class="botones" ><p id="Filtrar"><input type="submit" id="submit" name="filtrar" value="Filtrar" class="boton"></p></div>
+        </fieldset>
+</form>
+{% if cantidad>0 %}
+<div class="tablaDiv">
+
+    <br>
+    <table class="tabla">
+        <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Puntuacion IMDB</th>
+            <th>Poster</th>
+            <th>Estado</th>
+            <th>Puntuado por mi</th>
+            <th>Puntuacion Sitio</th>
+        </tr>
+    {% for show in shows %}
+        <tr>
+            <td>{{show.nombre}}</td>
+            <td><span translate="yes">{{show.overview}}</span></td>
+            <td>{{show.puntuacionIMDB}}</td>
+            <td><img class="poster" src="http://image.tmdb.org/t/p/w185//{{show.poster}}"></td>
+            {%if show.estado==0%}
+            <td>Visto</td>
+            {% elif show.estado==1%}
+            <td>Pendiente</td>
+            {%else%}
+            <td>En proceso</td>
+            {%endif%}
+            {%if show.puntuado==1%}
+            <td>Si</td>
+            {%else%}
+            <td>No</td>
+            {%endif%}
+            {%if show.cantidadPuntuaciones>0%}
+            <td>{{show.puntuacionUsuariosAcumulada/show.cantidadPuntuaciones}}</td>
+            {%else%}
+            <td>Sin puntuacion aun</td>
+            {%endif%}
+            <td><form method="POST" id="modificarShow" action="modificarPerShowForm">
+                <input type="text" name="tipo" value="{{show.tipo}}" style="visibility:hidden" />
+                <input type="text" name="idShow" value="{{show.idShow}}" style="visibility:hidden" />
+                <input type="submit" name="modificar" value="Modificar" />
+            </form></td>
+        </tr>
+     {% endfor %}
+    </table>
+
+    <div class="botones" ><a id="Volver" href="/">Volver</a></div>
+</div>
+{% else %}
+<div class="noresults">
+    <h2>No se encontraron resultados</h2>
+<a id="vuelta" href="/">Volver</a>
+</div>
+{% endif %}
+{% endblock %}

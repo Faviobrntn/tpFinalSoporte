@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<form id="formAlta" action="altaPersona" method="POST">
+<fieldset>
+<legend>Nuevo Usuario</legend>
+	<div class="formu"><label>Apellido:</label><input type="text" name="apellido" id="apellido" required=""/></div><br />
+	<div class="formu"><label>Nombre:</label><input type="text" name="nombre" id="nombre" required=""/></div><br />
+    <div class="formu"><label>DNI:</label><input type="text" name="dni" id="dni" required=""/></div><br />
+    <div class="formu"><label>Usuario:</label><input type="text" name="usuario" id="usu" required=""/></div><br />
+    <div class="formu"><label>Contraseña:</label><input type="text" name="contraseña" id="cont" required=""/></div><br />
+    <div class="botones" ><input type="submit" name="enviar" id="Enviar" value="Enviar" />
+        <input type="reset" name="borrar" id="borrar" value="Borrar" /></div>
+    <div class="botones" ><a id="Registrarse" href="/">Volver</a></div>
+
+</fieldset>
+</form>
+{% endblock %}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<style>
+body{
+border:solid black 2px;
+}
+.cabecera{
+	height: 200px;
+	background-image: url('/static/fondo.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    }
+
+.titulo{
+padding-left:10%;
+padding-top:2.5%;
+font-size:2em;}
+.titulo a{
+text-decoration:none;}
+
+.contenido{
+        min-height:500px;
+    	background-image: url('/static/fondocontenido.jpg');
+		background-repeat: repeat;
+		width:100%;
+		background-color: yellow;
+			}
+
+.noresults{
+text-align:center;
+padding-top:50px;
+}
+
+h2{
+padding-top:70px;}
+
+.tablaDiv{
+padding-left:10%;
+padding-top:20px;
+}
+
+.tabla{
+width:90%;
+text-align:center;
+border:solid 2px black;
+}
+
+.tabla table th, td{border:solid 2px black;}
+
+
+.poster{
+width:90px;
+height:130px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: dimgray;
+}
+li {
+    float: left;
+}
+
+li a {
+    display:block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+div.formu label{float: left;
+				width: 15%;}
+div.formu input{ width: *;
+	}
+div.radio,.botones {text-align: center;
+	margin-top: 10px;}
+input[type="reset"] {padding-left: 10px;}
+li ul {
+display:block;
+}
+li ul
+{display:none;
+position:absolute;
+min-width:100px;
+}
+li ul li{
+clear:left;}
+
+
+li:hover > ul{display:block;
+}
+</style>
+</head>
+<title>Peliculas y series</title>
+<body>
+	<div class="cabecera">
+        <div class="titulo">
+            <h1><a href="/">Series y Peliculas</a></h1>
+        </div>
+	</div>
+<div>
+<ul>
+  <li><a href="/" class="active">Inicio</a></li>
+  <li><a href="misSeries">Mis Series</a></li>
+  <li><a href="misPeliculas">Mis Peliculas</a></li>
+    <li><a href="descubrir">Descubrir</a></li>
+  <li><a href="#about">Acerca de</a></li>
+  <li style="float:right"><a href="#config">Perfil</a>
+      <ul>
+          <li><a href="modificarUsuarioForm">Editar</a></li>
+          <li><a href="logout">Salir</a></li>
+      </ul></li>
+</ul>
+</div>
+<div class="contenido" >{% block content %}{% endblock %}</div>
+</body>
+</html>

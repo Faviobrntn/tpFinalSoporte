@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if var %}
+<script type="text/javascript">
+	alert("Usuario Incorrecto");
+</script>
+{% endif %}
+{% if var1 %}
+<script type="text/javascript">
+	alert("Ha ocurrido un error");
+</script>
+{% endif %}
+				<form id="form-login" action="index" method="post" autocomplete="off">
+					<fieldset>
+						<legend>Loguin Usuario</legend>
+						<div class="formu"><p><label >Nombre Usuario:</label></p></div>
+						<div class="formu"><input name="usuario" type="text" id="usuario" autofocus="" required=""></p></div>
+						<div class="formu"><p><label >Contraseña:</label></p></div>
+						<div class="formu"><input name="contraseña" type="password" id="contraseña"  autofocus="" required=""></p></div>
+						<div class="botones" ><p id="Ingresar"><input type="submit" id="submit" name="submit" value="Ingresar" class="boton"></p></div>
+						<div class="botones" ><a id="Registrarse" href="altaPersonaForm">Registrarse</a></div>
+					</fieldset>
+				</form>
+
+{% endblock %}
+</body>
+</html>

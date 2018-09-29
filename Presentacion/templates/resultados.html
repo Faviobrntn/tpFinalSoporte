@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if cantidad>0 %}
+<div class="tablaDiv">
+    <table class="tabla">
+        <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Puntuacion</th>
+            <th>Poster</th>
+            <th></th>
+        </tr>
+    {% for show in shows %}
+        <tr>
+            <td>{{show.nombre}}</td>
+            <td><span translate="yes">{{show.overview}}</span></td>
+            <td>{{show.puntuacionIMDB}}</td>
+            <td><img class="poster" src="http://image.tmdb.org/t/p/w185//{{show.poster}}"></td>
+            <td><form id="formShow" action="formAgregarShow" method="post">
+                <input name="tipo" type="text" id="tipo" value="{{show.tipo}}" style="visibility:hidden">
+                <input name="idShow" type="text" id="id" value="{{show.idShow}}" style="visibility:hidden">
+                <input class="agregarBoton" type="submit" id="submit" name="submit" value="Agregar" class="boton">
+            </form></td>
+        </tr>
+     {% endfor %}
+    </table>
+
+    <div class="botones" ><a id="Volver" href="/bienvenido.html">Volver</a></div>
+</div>
+{% else %}
+<div class="noresults">
+    <h2>No se encontraron resultados</h2>
+<a id="vuelta" href="/">Volver</a>
+</div>
+{% endif %}
+{% endblock %}

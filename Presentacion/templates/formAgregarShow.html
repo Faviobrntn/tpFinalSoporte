@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<form id="formAlta" action="agregarShow" method="POST">
+<fieldset>
+<legend>Agregar Show</legend>
+    <div class="formu"><label>ID:</label><label>{{show.idShow}}</label></div><br /><br />
+    <input type="text" name="idShow" id="idShow" required="" value="{{show.idShow}}" style="visibility:hidden"/>
+    <div class="formu"><label>Nombre:</label><label>{{show.nombre}}</label></div><br />
+    <input type="text" name="tipo" id="tipo" required="" value="{{show.tipo}}" style="visibility:hidden"/>
+    <div class="formu"><label>Puntuacion IMDB:</label><label>{{show.puntuacionIMDB}}</label></div><br /><br />
+    <div class="formu"><label style="height:50px;">Overview:</label><div><span>{{show.overview}}</span></div></div><br />
+    <div class="formu"><label>Poster:</label><img class="poster" src="http://image.tmdb.org/t/p/w185//{{show.poster}}" style="border:solid black 2px;"></div><br />
+    <div class="formu"><label>Estado:</label><select name="estado" required="">
+        <option value="0">Visto</option>
+        <option value="2">En Proceso</option>
+        <option value="1">Pendiente</option>
+    </select></div><br />
+    <div class="botones" ><input type="submit" name="agregar" id="Agregar" value="Agregar" /></div>
+    <div class="botones" ><a id="volver" href="/bienvenido.html">Volver</a></div>
+
+</fieldset>
+</form>
+{% endblock %}
