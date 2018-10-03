@@ -1,17 +1,39 @@
 {% extends 'base.html' %}
-{% block content %}
-<form id="formAlta" action="altaPersona" method="POST">
-<fieldset>
-<legend>Nuevo Usuario</legend>
-	<div class="formu"><label>Apellido:</label><input type="text" name="apellido" id="apellido" required=""/></div><br />
-	<div class="formu"><label>Nombre:</label><input type="text" name="nombre" id="nombre" required=""/></div><br />
-    <div class="formu"><label>DNI:</label><input type="text" name="dni" id="dni" required=""/></div><br />
-    <div class="formu"><label>Usuario:</label><input type="text" name="usuario" id="usu" required=""/></div><br />
-    <div class="formu"><label>Contraseña:</label><input type="text" name="contraseña" id="cont" required=""/></div><br />
-    <div class="botones" ><input type="submit" name="enviar" id="Enviar" value="Enviar" />
-        <input type="reset" name="borrar" id="borrar" value="Borrar" /></div>
-    <div class="botones" ><a id="Registrarse" href="/">Volver</a></div>
 
-</fieldset>
-</form>
+
+{% block buscador %}
+<div class="jumbotron">
+	<div class="container">
+		<h1 class="display-3">{% block title %}Registro{% endblock %}</h1>
+		<form method="post">
+			<div class="form-group">
+				<label for="nombre">Nombre</label>
+				<input type="text" name="nombre" class="form-control form-control-lg" id="nombre" placeholder="Nombre">
+			</div>
+			<div class="form-group">
+				<label for="apellido">Apellido</label>
+				<input type="text" name="apellido" class="form-control form-control-lg" id="apellido" placeholder="Apellido">
+			</div>
+			<div class="form-group">
+				<label for="dni">DNI</label>
+				<input type="dni" name="dni" class="form-control form-control-lg" id="dni" placeholder="DNI">
+			</div>
+			<div class="form-group">
+				<label for="username">Usuario</label>
+				<input type="text" name="usuario" class="form-control form-control-lg" id="username" placeholder="Usuario">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" name="contraseña" class="form-control form-control-lg" id="password" placeholder="Password">
+			</div>
+
+			<div class="row">
+				<button type="reset" class="btn btn-default btn-lg">Borrar</button>
+				<button type="submit" class="btn btn-success btn-lg pull-right">Registrarme</button>
+			</div>
+		</form>
+	</div>
+</div>
 {% endblock %}
+
+{% block content %} {% endblock %}

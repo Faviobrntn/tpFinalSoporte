@@ -1,111 +1,14 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="es">
 <head>
-<style>
-body{
-border:solid black 2px;
-}
-.cabecera{
-	height: 200px;
-	background-image: url('/static/fondo.png');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    }
-
-.titulo{
-padding-left:10%;
-padding-top:2.5%;
-font-size:2em;}
-.titulo a{
-text-decoration:none;}
-
-.contenido{
-        min-height:500px;
-    	background-image: url('/static/fondocontenido.jpg');
-		background-repeat: repeat;
-		width:100%;
-		background-color: yellow;
-			}
-
-.noresults{
-text-align:center;
-padding-top:50px;
-}
-
-h2{
-padding-top:70px;}
-
-.tablaDiv{
-padding-left:10%;
-padding-top:20px;
-}
-
-.tabla{
-width:90%;
-text-align:center;
-border:solid 2px black;
-}
-
-.tabla table th, td{border:solid 2px black;}
-
-
-.poster{
-width:90px;
-height:130px;
-}
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: dimgray;
-}
-li {
-    float: left;
-}
-
-li a {
-    display:block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: #111;
-}
-
-div.formu label{float: left;
-				width: 15%;}
-div.formu input{ width: *;
-	}
-div.radio,.botones {text-align: center;
-	margin-top: 10px;}
-input[type="reset"] {padding-left: 10px;}
-li ul {
-display:block;
-}
-li ul
-{display:none;
-position:absolute;
-min-width:100px;
-}
-li ul li{
-clear:left;}
-
-
-li:hover > ul{display:block;
-}
-</style>
 </head>
 <title>Peliculas y series</title>
 <body>
-	<div class="cabecera">
+  <div class="cabecera">
         <div class="titulo">
             <h1><a href="/">Series y Peliculas</a></h1>
         </div>
-	</div>
+  </div>
 <div>
 <ul>
   <li><a href="/" class="active">Inicio</a></li>
@@ -120,6 +23,191 @@ li:hover > ul{display:block;
       </ul></li>
 </ul>
 </div>
-<div class="contenido" >{% block content %}{% endblock %}</div>
+</body>
+</html>
+ -->
+
+
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>{% block title %}TMDB{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='album.css') }}">
+</head>
+
+<body>
+    {% block header %}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+             {% if g.user %}
+                <a class="navbar-brand" href="#">{{ g.user['nombreUsuario'].upper() }}</a>
+                <h1 class="jumbotron-heading"></h1>
+            {% else %}
+                <a class="navbar-brand" href="#">TMDB</a>
+            {% endif %}
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse" id="navbarsExample05" style="">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                     {% if g.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('misSeries') }}">Mis Series</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('misPeliculas') }}">Mis Peliculas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('descubrir') }}">Descubrir</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Acerca de..</a>
+                    </li>
+                </ul>
+
+                {% if g.user %}
+                    <ul class="navbar-nav active">
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ g.user['nombreUsuario'].upper() }}</a>
+                          <div class="dropdown-menu" aria-labelledby="dropdown05">
+                              <a class="dropdown-item" href="modificarUsuarioForm">Editar Perfil</a>
+                              <a class="dropdown-item" href="logout">Salir</a>
+                          </div>
+                      </li>
+                    </ul>
+                    <!-- <a href="{{ url_for('logout') }}" class="btn btn-outline-danger my-2 my-sm-0">Salir</a> -->
+                {% else %}
+                    <a href="{{ url_for('altaPersonaForm') }}" class="btn btn-outline-success my-2 my-sm-0">Registrarse</a>
+                    <li class="nav-item"></li>
+                    <a href="{{ url_for('loguin') }}" class="btn btn-outline-primary my-2 my-sm-0">Ingresar</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    {% endblock %}
+
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-primary" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+
+    <main role="main">
+
+        {% block buscador %}
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Bienvenido! </h1>
+                <p class="lead text-muted">Puede buscar peliculas, series o programas de TV</p>
+                <form method="post" action="resultados" id="form-buscar" autocomplete="off">
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12 col-md-8">
+                            <input type="text" name="nombre" class="form-control form-control-lg" id="nombre" placeholder="Buscar.." required autocomplete="off" value="{{ request.form['nombre'] }}" style="height: 60px;">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4">
+                            <select name="show" class="form-control form-control-lg" style="height: 60px;">
+                                {% if request.form['show'] == "pelicula" %}
+                                <option value="pelicula" selected>Peliculas</option>
+                                <option value="serie">Series</option>
+                                {% elif request.form['show'] == "serie" %}
+                                <option value="pelicula">Peliculas</option>
+                                <option value="serie" selected>Series</option>
+                                {% else %}
+                                <option value="pelicula">Peliculas</option>
+                                <option value="serie">Series</option>
+                                {% endif %}
+                                <!-- <option value="tv">TV</option> -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12 col-md-12">
+                            <button type="submit" class="btn btn-block btn-primary" style="height: 60px;">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        {% endblock %}
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+
+    </main>
+
+
+
+    {% block footer %}
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>&copy; Proyecto que consume API de TMDB</p>
+            <p><a href="https://www.themoviedb.org/?language=es">Visite la homepage</a>.</p>
+        </div>
+    </footer>
+    {% endblock %}
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename='jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='holder.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $(".btn-favorito").click(function(e){
+                e.preventDefault();
+                var favorito_id = $(this).data('id');
+                $.ajax({
+                    type:'POST',
+                    url: "formAgregarShow",
+                    data:{id: favorito_id},
+                    dataType: "json",
+                    success: (data) => {
+                        if (data.status) {
+                            if (data.fav) { //Si es True guardo en FAV 
+                                $(this).html('<i class="fas fa-heart" style="color:red;"></i> Favorito');
+                            }else{
+                                $(this).html('<i class="far fa-heart"></i> Favorito');
+                            }
+                        }else{
+                            alert(data.msg);
+                        }
+                    },
+                    error: (data) => {
+                        console.error(data);
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

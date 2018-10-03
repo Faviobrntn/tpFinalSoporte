@@ -1,16 +1,32 @@
 {% extends 'base.html' %}
-{% block content %}
-<form id="formAlta" action="usuarioModificado" method="POST">
-<fieldset>
-<legend>Modificar Usuario</legend>
-    <div class="formu"><label>ID Usuario:</label><input type="text" name="id" id="id" value={{persona.idpersona}} readonly=""/></div><br />
-	<div class="formu"><label>Apellido:</label><input type="text" name="apellido" id="apellido" value={{persona.apellido}} /></div><br />
-	<div class="formu"><label>Nombre:</label><input type="text" name="nombre" id="nombre" value={{persona.nombre}} /></div><br />
-    <div class="formu"><label>DNI:</label><input type="text" name="dni" id="dni" value={{persona.dni}} /></div><br />
-    <div class="formu"><label>Usuario:</label><input type="text" name="usuario" id="usu" value={{usuario.nombreUsuario}} /></div><br />
-    <div class="formu"><label>Contraseña:</label><input type="text" name="contraseña" id="cont" value={{usuario.contrasena}} /></div><br />
-    <div class="botones" ><input type="submit" name="enviar" id="Enviar" value="Modificar" /></div>
-    <div class="botones" ><a id="volver" href="/">Volver</a></div>
-</fieldset>
-</form>
+
+
+{% block buscador %}
+<div class="jumbotron">
+	<div class="container">
+		<h1 class="display-3">{% block title %}Modificar Usuario{% endblock %}</h1>
+		<form method="post" action="usuarioModificado">
+			<input type="hidden" name="id" value={{persona.idpersona}}>
+			<input type="hidden" name="usuario" value={{usuario.nombreUsuario}}>
+			<input type="hidden" name="contraseña" value={{usuario.contrasena}}>
+			<div class="form-group">
+				<label for="nombre">Nombre</label>
+				<input type="text" name="nombre" class="form-control form-control-lg" id="nombre" placeholder="Nombre" value="{{persona.apellido}}">
+			</div>
+			<div class="form-group">
+				<label for="apellido">Apellido</label>
+				<input type="text" name="apellido" class="form-control form-control-lg" id="apellido" placeholder="Apellido" value="{{persona.nombre}}">
+			</div>
+			<div class="form-group">
+				<label for="dni">DNI</label>
+				<input type="dni" name="dni" class="form-control form-control-lg" id="dni" placeholder="DNI" value="{{persona.dni}}">
+			</div>
+			<div class="row">
+				<button type="submit" class="btn btn-success btn-lg pull-right">Guardar Cambios</button>
+			</div>
+		</form>
+	</div>
+</div>
 {% endblock %}
+
+{% block content %} {% endblock %}

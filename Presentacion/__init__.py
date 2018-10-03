@@ -1,16 +1,34 @@
-from flask import Flask, session, flash
-from flask import render_template
-from flask import request
+import functools
+
+from flask import (
+    Flask, Blueprint, flash, g, redirect, render_template, request, session, url_for
+)
 from Negocio import ABMPersona,ABMUsuario,ShowAPI,ABMShow,ABMPersonaShow
 from DBase import Tablas
 
-app= Flask(__name__)
-app.secret_key="sebastian"
+bp = Blueprint('Presentacion', __name__, url_prefix='/')
 
+app = Flask(__name__)
+app.secret_key ="sebastian"
+app.register_blueprint(bp)
+# app.add_url_rule('/', endpoint='index')
+
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('idpersona')
+    print(user_id)
+    if user_id is None:
+        g.user = None
+    else:
+        abmu = ABMUsuario.ABMUsuario()
+        usr = abmu.buscarUsuarioPorID(user_id)
+        print(usr)
+        g.user = usr
 
 @app.route('/',methods=["GET","POST"])
 def index():
     if("idpersona" in session):
+        load_logged_in_user()
         return render_template('bienvenido.html')
     else:
         return render_template('loguin.html')
@@ -25,10 +43,12 @@ def loguin():
         usuEncontrado = abm.buscarUsuario(usuario)
         if (usuEncontrado!=None):
             session["idpersona"] = usuEncontrado.idpersona
+            load_logged_in_user()
             return render_template('bienvenido.html')
         else:
             return render_template('loguin.html',var=True)
     return render_template('loguin.html')
+
 
 @app.route('/altaPersonaForm')
 def altaPersonaForm():
@@ -60,6 +80,7 @@ def buscarShow():
     if request.method=='POST':
         nombre = request.form['nombre']
         opcion = request.form['show']
+        load_logged_in_user()
         if (opcion =='serie'):
             show=ShowAPI.ShowAPI()
             shows=show.buscarSerie(nombre)
@@ -71,10 +92,40 @@ def buscarShow():
     return render_template('bienvenido.html')
 
 
+
+@app.route('/<int:id>/detalles', methods=('GET', 'POST'))
+def detalles(id):
+    #Comprobamos si viene el parametro por GET
+    try:
+        load_logged_in_user()
+        if request.method == 'GET':
+
+            tipo = request.args.get('tipo')
+            detalles = None
+
+            if (tipo != ''):
+                show=ShowAPI.ShowAPI()
+                if (tipo == '1'):
+                    detalles=show.buscarSeriePorId(id)
+                elif(tipo == '0'):
+                    detalles=show.buscarPeliculaPorId(id)
+            else:
+                raise Exception('Parametro vacio.')
+    except Exception as e:
+        flash(str(e))
+        return redirect(url_for('index'))
+
+    return render_template('detalles.html', resultado=detalles)
+
+
+
+
+
 @app.route('/logout')
 def logout():
     session.pop('idpersona', None)
     return render_template('loguin.html')
+
 
 @app.route('/modificarUsuarioForm')
 def modificarUsuario():
@@ -84,6 +135,7 @@ def modificarUsuario():
         abmu=ABMUsuario.ABMUsuario()
         usu=abmu.buscarUsuarioPorID(session['idpersona'])
         if(per!=None and usu!=None):
+            load_logged_in_user()
             return render_template('modificarUsuario.html', persona=per,usuario=usu)
     return render_template('loguin.html')
 
@@ -146,6 +198,7 @@ def agregarShow():
 @app.route('/misPeliculas')
 def misPeliculas():
     if("idpersona" in session):
+        load_logged_in_user()
         abm=ABMPersonaShow.ABMPersonaShow()
         showPer=abm.buscarPerShowPorIdPersona(session['idpersona'])
         if(len(showPer)>0):
@@ -162,6 +215,7 @@ def misPeliculas():
 @app.route('/misSeries')
 def misSeries():
     if("idpersona" in session):
+        load_logged_in_user()
         abm=ABMPersonaShow.ABMPersonaShow()
         showPer=abm.buscarPerShowPorIdPersona(session['idpersona'])
         if(len(showPer)>0):
@@ -180,7 +234,8 @@ def descubrir():
     if('idpersona' in session):
         abm=ShowAPI.ShowAPI()
         shows=abm.descubrir()
-        return render_template('resultados.html',shows=shows,cantidad=len(shows))
+        load_logged_in_user()
+        return render_template('descubrir.html',shows=shows,cantidad=len(shows))
     return render_template('loguin.html',var1=True)
 
 @app.route('/modificarPerShowForm',methods=['GET','POST'])
@@ -264,6 +319,17 @@ def filtrar():
 
 
 
+
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('loguin'))
+
+        return view(**kwargs)
+
+    return wrapped_view
 
 if __name__=="__main__":
     app.run(debug=True)

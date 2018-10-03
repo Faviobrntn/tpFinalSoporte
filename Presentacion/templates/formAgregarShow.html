@@ -1,23 +1,46 @@
 {% extends 'base.html' %}
-{% block content %}
-<form id="formAlta" action="agregarShow" method="POST">
-<fieldset>
-<legend>Agregar Show</legend>
-    <div class="formu"><label>ID:</label><label>{{show.idShow}}</label></div><br /><br />
-    <input type="text" name="idShow" id="idShow" required="" value="{{show.idShow}}" style="visibility:hidden"/>
-    <div class="formu"><label>Nombre:</label><label>{{show.nombre}}</label></div><br />
-    <input type="text" name="tipo" id="tipo" required="" value="{{show.tipo}}" style="visibility:hidden"/>
-    <div class="formu"><label>Puntuacion IMDB:</label><label>{{show.puntuacionIMDB}}</label></div><br /><br />
-    <div class="formu"><label style="height:50px;">Overview:</label><div><span>{{show.overview}}</span></div></div><br />
-    <div class="formu"><label>Poster:</label><img class="poster" src="http://image.tmdb.org/t/p/w185//{{show.poster}}" style="border:solid black 2px;"></div><br />
-    <div class="formu"><label>Estado:</label><select name="estado" required="">
-        <option value="0">Visto</option>
-        <option value="2">En Proceso</option>
-        <option value="1">Pendiente</option>
-    </select></div><br />
-    <div class="botones" ><input type="submit" name="agregar" id="Agregar" value="Agregar" /></div>
-    <div class="botones" ><a id="volver" href="/bienvenido.html">Volver</a></div>
 
-</fieldset>
-</form>
+{% block buscador %} {% endblock %}
+{% block content %}
+
+    <h1>{% block title %}Agregar Show{% endblock %}</h1>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{show.poster}}">
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ show.nombre }}</h5>
+                    <p class="card-text">
+                    </p>
+                    <form id="formAlta" action="agregarShow" method="POST">
+                        <div class="form-group">
+                            <label>ID:</label><label>{{show.idShow}}</label></div><br /><br />
+                            <input type="text" name="idShow" id="idShow" required="" value="{{show.idShow}}" style="visibility:hidden"/>
+                        </div>
+                        <div class="formu"><label>Nombre:</label><label>{{show.nombre}}</label></div><br />
+                        <input type="text" name="tipo" id="tipo" required="" value="{{show.tipo}}" style="visibility:hidden"/>
+                        <div class="formu"><label>Puntuacion IMDB:</label><label>{{show.puntuacionIMDB}}</label></div><br /><br />
+                        <div class="formu"><label style="height:50px;">Overview:</label><div><span>{{show.overview}}</span></div></div><br />
+<!--                         <div class="formu"><label>Poster:</label><img class="poster" src="http://image.tmdb.org/t/p/w185//{{show.poster}}" style="border:solid black 2px;"></div><br />
+ -->                    
+                        <div class="formu"><label>Estado:</label>
+                    <select name="estado" required="">
+                            <option value="0">Visto</option>
+                            <option value="2">En Proceso</option>
+                            <option value="1">Pendiente</option>
+                        </select></div><br />
+                        <div class="botones" ><input type="submit" name="agregar" id="Agregar" value="Agregar" /></div>
+                        <div class="botones" ><a id="volver" href="/bienvenido.html">Volver</a></div>
+
+                    </form>
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
