@@ -163,6 +163,7 @@ def usuarioModificado():
 
 @app.route('/formAgregarShow',methods=['GET','POST'])
 def formAgregarResultado():
+    load_logged_in_user()
     if request.method=='POST':
         show=ShowAPI.ShowAPI()
         if (request.form['tipo']=="0"):
@@ -240,6 +241,7 @@ def descubrir():
 
 @app.route('/modificarPerShowForm',methods=['GET','POST'])
 def modificarPerShow():
+    load_logged_in_user()
     if request.method=='POST':
         pershow=Tablas.PersonaShow()
         abm=ABMPersonaShow.ABMPersonaShow()
@@ -258,6 +260,7 @@ def modificarPerShow():
 
 @app.route('/modiShow',methods=['GET','POST'])
 def modiShow():
+    load_logged_in_user()
     if request.method=='POST':
         pershow=Tablas.PersonaShow()
         abm=ABMPersonaShow.ABMPersonaShow()
