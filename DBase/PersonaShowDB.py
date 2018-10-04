@@ -38,6 +38,19 @@ class PersonaShowDB:
             self.con.session.rollback()
             return False
 
+    def bajaPerShow(self,pershow):
+        try:
+            persho = self.con.session.query(Tablas.PersonaShow).filter(and_(Tablas.PersonaShow.idpersona == pershow.idpersona, Tablas.PersonaShow.idshow == pershow.idshow,Tablas.PersonaShow.tipo==pershow.tipo)).first()
+            persho.estado = pershow.estado
+            persho.puntuado = pershow.puntuado
+            self.con.session.delete(persho)
+            self.con.session.commit()
+            return True
+        except Exception as e:
+            print("No se pudo dar de baja el registro: "+e)
+            self.con.session.rollback()
+            return False
+
     def buscarPerShowsPorIdPersona(self,id):
         try:
             shows=self.con.session.query(Tablas.PersonaShow).filter(Tablas.PersonaShow.idpersona == id).all()

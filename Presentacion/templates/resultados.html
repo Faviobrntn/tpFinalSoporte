@@ -49,7 +49,7 @@
                     <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{show['poster']}}" width="100" height="100">
                 </div>
                 <div class="col-sm-8">
-                    <a class="action" href="#">
+                    <a class="action" href="{{ url_for('detalles', id=show.idShow, tipo=show.tipo) }}">
                         <h1>{{ show['nombre'] }}</h1>
                     </a>
                     <div class="about">Puntuacion {{show.puntuacionIMDB}} {{ show['release_date'] }}</div>

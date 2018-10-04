@@ -129,18 +129,19 @@ def logout():
 
 @app.route('/modificarUsuarioForm')
 def modificarUsuario():
+    load_logged_in_user()
     if("idpersona" in session):
         abmp=ABMPersona.ABMPersona()
         per=abmp.buscarPersonaPorID(session['idpersona'])
         abmu=ABMUsuario.ABMUsuario()
         usu=abmu.buscarUsuarioPorID(session['idpersona'])
         if(per!=None and usu!=None):
-            load_logged_in_user()
             return render_template('modificarUsuario.html', persona=per,usuario=usu)
     return render_template('loguin.html')
 
 @app.route('/usuarioModificado',methods=['GET','POST'])
 def usuarioModificado():
+    load_logged_in_user()
     per=Tablas.Persona()
     usu=Tablas.Usuario()
     if request.method=='POST':
@@ -180,8 +181,11 @@ def formAgregarResultado():
                 return render_template('formAgregarShow.html',show=showEncontrado)
     return render_template('loguin.html', var1=True)
 
+
+
 @app.route('/agregarShow',methods=['GET','POST'])
 def agregarShow():
+    load_logged_in_user()
     if request.method=='POST':
         persho=Tablas.PersonaShow()
         persho.tipo=int(request.form['tipo'])
@@ -193,13 +197,22 @@ def agregarShow():
         abm=ABMPersonaShow.ABMPersonaShow()
         final=abm.altaPersonaShow(persho)
         if (final):
-            return render_template('bienvenido.html',var3=True)
+            # return render_template('bienvenido.html',var3=True)
+            flash("Se agrego con éxito.")
+            if tipo == 0:
+                return redirect(url_for('misPeliculas'))
+            elif tipo == 1:
+                return redirect(url_for('misSeries'))
+            else:
+                return redirect(url_for('descubrir'))
     return render_template('loguin.html', var1=True)
+
+
 
 @app.route('/misPeliculas')
 def misPeliculas():
+    load_logged_in_user()
     if("idpersona" in session):
-        load_logged_in_user()
         abm=ABMPersonaShow.ABMPersonaShow()
         showPer=abm.buscarPerShowPorIdPersona(session['idpersona'])
         if(len(showPer)>0):
@@ -215,8 +228,8 @@ def misPeliculas():
 
 @app.route('/misSeries')
 def misSeries():
+    load_logged_in_user()
     if("idpersona" in session):
-        load_logged_in_user()
         abm=ABMPersonaShow.ABMPersonaShow()
         showPer=abm.buscarPerShowPorIdPersona(session['idpersona'])
         if(len(showPer)>0):
@@ -232,10 +245,10 @@ def misSeries():
 
 @app.route('/descubrir')
 def descubrir():
+    load_logged_in_user()
     if('idpersona' in session):
         abm=ShowAPI.ShowAPI()
         shows=abm.descubrir()
-        load_logged_in_user()
         return render_template('descubrir.html',shows=shows,cantidad=len(shows))
     return render_template('loguin.html',var1=True)
 
@@ -281,9 +294,34 @@ def modiShow():
     return render_template('loguin.html',var1=True)
 
 
+@app.route('/eliminarShow',methods=['GET','POST'])
+def eliminarShow():
+    load_logged_in_user()
+    if request.method=='POST':
+        pershow=Tablas.PersonaShow()
+
+        pershow.idpersona=int(session["idpersona"])
+        pershow.idshow=int(request.form['idShow'])
+        pershow.tipo=int(request.form['tipo'])
+        pershow.puntuado=1
+
+        abm=ABMPersonaShow.ABMPersonaShow()
+        result = abm.eliminarPerShow(pershow)
+
+        if result == True:
+            flash("Se elimino con éxito.")
+        else:
+            flash("No se puedo eliminar el registro.")
+        # show=Tablas.Show()
+        # show.idShow=int(request.form['idShow'])
+        # show.tipo=int(request.form['tipo'])
+    return redirect(url_for('descubrir'))
+
+
 
 @app.route('/filtrar',methods=['GET','POST'])
 def filtrar():
+    load_logged_in_user()
     if request.method=='POST':
         abm=ABMPersonaShow.ABMPersonaShow()
         showPer=abm.buscarPerShowPorIdPersona(session['idpersona'])

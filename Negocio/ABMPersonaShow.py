@@ -23,3 +23,6 @@ class ABMPersonaShow():
 
     def modificarPerShow(self,pershow):
         return self.pershowDB.modificarPerShow(pershow)
+
+    def eliminarPerShow(self,pershow):
+        return self.pershowDB.bajaPerShow(pershow)

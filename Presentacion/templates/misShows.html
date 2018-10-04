@@ -51,7 +51,7 @@
                     <th scope="col">Estado</th>
                     <th scope="col">Puntuado por mi</th>
                     <th scope="col">Puntuacion Sitio</th>
-                    <th scope="col" colspan="2">Acciones</th>
+                    <th scope="col" colspan="3">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,7 +59,7 @@
                 <tr>
                     <td><img class="poster" src="http://image.tmdb.org/t/p/w185//{{show.poster}}" ></td>
                     <td>{{show.nombre}}</td>
-                    <td><span translate="yes">{{show.overview}}</span></td>
+                    <td>{{show.overview[:120]}}...</td>
                     <td>{{show.puntuacionIMDB}}</td>
                     
                     <td>{{ estados[show.estado] }}</td>
@@ -71,6 +71,12 @@
                     {%else%}
                         <td>Sin puntuacion aun</td>
                     {%endif%}
+
+                    <td>
+                        <a class="btn btn-primary" href="{{ url_for('detalles', id=show.idShow, tipo=show.tipo) }}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
                     
                     <td>
                         <form method="POST" id="modificarShow" action="modificarPerShowForm">
@@ -81,7 +87,7 @@
                         </form>
                     </td>
                     <td>
-                        <form method="POST" id="modificarShow" action="modificarPerShowForm">
+                        <form method="POST" action="eliminarShow">
                             <input type="hidden" name="tipo" value="{{show.tipo}}" />
                             <input type="hidden" name="idShow" value="{{show.idShow}}" />
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Estas seguro?');"><i class="fas fa-trash"></i></button>
