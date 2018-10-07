@@ -71,6 +71,7 @@ def altaPersona():
             abm=ABMUsuario.ABMUsuario()
             usuEncontrado = abm.buscarUsuario(usu)
             session["idpersona"]=usuEncontrado.idpersona
+            load_logged_in_user()
             return render_template('bienvenido.html',var1=True)
         else:
             return render_template('loguin.html', var1=True)
@@ -159,6 +160,8 @@ def usuarioModificado():
         if (guardado and guardado1):
             return render_template('bienvenido.html',var=guardado)
         else:
+            session.clear()
+            load_logged_in_user()
             return render_template('loguin.html', var1=True)
 
 
