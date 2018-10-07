@@ -39,4 +39,5 @@ class UsuarioDB:
             return True
         except Exception as e:
             self.con.session.rollback()
+            print(str(e))
             return False

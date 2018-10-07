@@ -16,13 +16,11 @@ app.register_blueprint(bp)
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('idpersona')
-    print(user_id)
     if user_id is None:
         g.user = None
     else:
         abmu = ABMUsuario.ABMUsuario()
         usr = abmu.buscarUsuarioPorID(user_id)
-        print(usr)
         g.user = usr
 
 @app.route('/',methods=["GET","POST"])
@@ -79,7 +77,7 @@ def altaPersona():
 @app.route('/resultados', methods=['GET','POST'])
 def buscarShow():
     if request.method=='POST':
-        nombre = request.form['nombre']
+        nombre = request.form['titulo']
         opcion = request.form['show']
         load_logged_in_user()
         if (opcion =='serie'):
@@ -140,29 +138,33 @@ def modificarUsuario():
             return render_template('modificarUsuario.html', persona=per,usuario=usu)
     return render_template('loguin.html')
 
+
 @app.route('/usuarioModificado',methods=['GET','POST'])
 def usuarioModificado():
-    load_logged_in_user()
     per=Tablas.Persona()
-    usu=Tablas.Usuario()
+    # usu=Tablas.Usuario()
     if request.method=='POST':
-        per.idpersona=request.form['id']
+        per.idpersona=request.form['idpersona']
         per.nombre=request.form['nombre']
         per.apellido=request.form['apellido']
         per.dni=request.form['dni']
-        usu.idpersona=request.form['id']
-        usu.nombreUsuario = request.form['usuario']
-        usu.contrasena = request.form['contraseña']
+        # usu.idpersona=request.form['idpersona']
+        # usu.nombreUsuario = request.form['usuario']
+        # usu.contrasena = request.form['contrasena']
         abm=ABMPersona.ABMPersona()
         guardado=abm.actualizarPersona(per)
-        abmu=ABMUsuario.ABMUsuario()
-        guardado1=abmu.actualizarUsuario(usu)
-        if (guardado and guardado1):
+        print(guardado)
+        # abmu=ABMUsuario.ABMUsuario()
+        # guardado1= abmu.actualizarUsuario(usu)
+        if (guardado):
+            load_logged_in_user()
+            flash("Sus datos se actualizaron con éxito.")
             return render_template('bienvenido.html',var=guardado)
         else:
             session.clear()
-            load_logged_in_user()
+            flash("No se pudo guardar.")
             return render_template('loguin.html', var1=True)
+
 
 
 @app.route('/formAgregarShow',methods=['GET','POST'])

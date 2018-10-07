@@ -16,6 +16,7 @@ class ABMUsuario():
 
     def actualizarUsuario(self,usu):
         usus=self.usDB.buscarUsuario(usu)
+        print(usus)
         if(usus==None or usus.idpersona==usu.idpersona):
             return self.usDB.actualizarUsuario(usu)
         else:

@@ -63,7 +63,7 @@ class ABMPersona():
             return False
 
     def validarDniAndIdpersona(self,per):
-        pers=self.buscarPersonaPorDni(per)
+        pers=self.buscarPersonaPorID(per)
         if(pers==None or pers.idpersona==per.idpersona):
             return True
         else:
