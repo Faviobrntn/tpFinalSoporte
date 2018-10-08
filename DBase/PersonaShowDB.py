@@ -64,3 +64,8 @@ class PersonaShowDB:
             return persho
         except Exception as e:
             return None
+
+
+abm=PersonaShowDB()
+pers=abm.buscarPerShowsPorIdPersona(1)
+print (len(pers))

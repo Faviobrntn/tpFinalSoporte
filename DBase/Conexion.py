@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 class conexion():
 	def __init__(self):
-		engine = create_engine('sqlite:///BaseDatos.bd')
+		engine = create_engine('sqlite:///Basenueva.bd')
 		Tablas.Base.metadata.bind = engine
 		Tablas.Base.metadata.create_all(engine)
 		db_session = sessionmaker()

@@ -64,7 +64,6 @@ def buscarserieporid():
     nombre="la casa de papel"
     resultado=api.buscarSeriePorId(id)
     return resultado
-    print(type(resultado.poster))
 
 
 def listarShows():
@@ -72,6 +71,7 @@ def listarShows():
     resul=ambs.listarShows()
     for i in resul:
         print(i.idShow)
+        print(i.tipo)
 
 
 def pershow():
@@ -107,5 +107,7 @@ def shows():
     for i in shows:
         print(i.nombre)
 
-listarPershow()
-buscarpeliporID()
+abm=ABMShow.ABMShow()
+show=Tablas.Show()
+show.idShow=71466
+print(abm.buscarShowPorID(show))

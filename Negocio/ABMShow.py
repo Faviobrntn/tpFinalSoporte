@@ -11,6 +11,13 @@ class ABMShow():
             self.showDB.alta(show)
         return True
 
+    def validarShow(self,show):
+        shows=self.showDB.buscarShowPorID(show)
+        if(shows==None):
+            return True
+        else:
+            return False
+
     def buscarShowporIDyTipo(self,show):
         return self.showDB.buscarShowPorIdyTipo(show)
 

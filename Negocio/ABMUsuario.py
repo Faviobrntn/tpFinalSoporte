@@ -15,10 +15,15 @@ class ABMUsuario():
         return self.usDB.buscarUsuarioPorID(id)
 
     def actualizarUsuario(self,usu):
-        usus=self.usDB.buscarUsuario(usu)
-        print(usus)
-        if(usus==None or usus.idpersona==usu.idpersona):
+        val=self.validarUsuarioContraseña(usu)
+        if(val):
             return self.usDB.actualizarUsuario(usu)
         else:
             return False
 
+    def validarUsuarioContraseña(self,usu):
+        usus=self.usDB.buscarUsuario(usu)
+        if(usus==None or usus.idpersona==usu.idpersona):
+            return True
+        else:
+            return False
