@@ -11,15 +11,17 @@ class showTest(unittest.TestCase):
         abm=ABMShow.ABMShow()
         pelicula=Tablas.Show()
         pelicula.tipo=0 #(pelicula)
-        pelicula.idShow=71466
+        pelicula.idShow=71446
         self.assertTrue(abm.validarShow(pelicula))
         se=Tablas.Show()
-        se.idShow=71466
+        se.idShow=71446
         se.tipo=1
         self.assertFalse(abm.validarShow(se))
         #tiene que dar False, porque ya existe en la base de datos
-        #lo raro es que cuando vuelvo a agregar la serie, no la agrega.. o sea que si ejecuta el metodo y ahi anda bien (aca no)
-
+        inexistente=Tablas.Show()
+        inexistente.idShow=14586
+        self.assertTrue(abm.validarShow(inexistente))
+        #show cuyo id no existe en la base de datos, sin conocer su tipo
 
 if __name__ == '__main__':
     unittest.main()

@@ -66,6 +66,3 @@ class PersonaShowDB:
             return None
 
 
-abm=PersonaShowDB()
-pers=abm.buscarPerShowsPorIdPersona(1)
-print (len(pers))

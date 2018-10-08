@@ -12,6 +12,15 @@ class ABMPersonaShow():
             self.pershowDB.alta(pershow)
         return True
 
+    def validarPersho(self,pershow):
+        persho=self.pershowDB.buscarPerShow(pershow)
+        if (persho == None or persho.tipo!=pershow.tipo):
+            return True
+        else:
+            return False
+
+
+
     def buscarPerShowPorIdPersona(self,id):
         return self.pershowDB.buscarPerShowsPorIdPersona(id)
 
@@ -26,3 +35,5 @@ class ABMPersonaShow():
 
     def eliminarPerShow(self,pershow):
         return self.pershowDB.bajaPerShow(pershow)
+
+

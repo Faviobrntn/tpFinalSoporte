@@ -6,14 +6,14 @@ class ABMShow():
         self.showDB = ShowDB.ShowDB()
 
     def altaShow(self,show):
-        shows=self.showDB.buscarShowPorID(show)
-        if(shows==None or shows.tipo!=show.tipo):
+        val=self.validarShow(show)
+        if(val):
             self.showDB.alta(show)
         return True
 
     def validarShow(self,show):
         shows=self.showDB.buscarShowPorID(show)
-        if(shows==None):
+        if(shows==None or shows.tipo!=show.tipo):
             return True
         else:
             return False

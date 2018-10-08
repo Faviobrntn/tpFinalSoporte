@@ -77,7 +77,7 @@ def listarShows():
 def pershow():
     abmshow=ABMShow.ABMShow()
     showEncontrado =Tablas.Show
-    showEncontrado.idShow=71466
+    showEncontrado.idShow=71446
     showEncontrado = abmshow.buscarShow(showEncontrado)
     abmPer=ABMPersona.ABMPersona()
     pershow = Tablas.PersonaShow()
@@ -95,7 +95,7 @@ def listarPershow():
     for i in lista:
         print(i.idpersona)
         print(i.idshow)
-        print(i.estado)
+        print(i.tipo)
 def shows():
     listarShows()
     abm=ABMPersonaShow.ABMPersonaShow()
@@ -107,7 +107,5 @@ def shows():
     for i in shows:
         print(i.nombre)
 
-abm=ABMShow.ABMShow()
-show=Tablas.Show()
-show.idShow=71466
-print(abm.buscarShowPorID(show))
+
+
